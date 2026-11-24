@@ -1,0 +1,22 @@
+@base = http://localhost:8082
+@user = alice
+@password = demo-pass
+
+### Current identity
+GET {{base}}/api/me
+Authorization: Basic {{user}} {{password}}
+
+### Main workflow action
+POST {{base}}/api/orders
+Authorization: Basic {{user}} {{password}}
+Content-Type: application/json
+
+{
+  "productId": 1,
+  "quantity": 1,
+  "requestKey": "demo-order-001",
+  "payment": "success"
+}
+
+### Health
+GET {{base}}/actuator/health
